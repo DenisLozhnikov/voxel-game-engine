@@ -59,7 +59,7 @@ Shader* load_shader(std::string vertexFile, std::string fragmentFile) {
 	GLint success;
 	GLchar infoLog[512];
 
-	// Vertex Shader
+	// Vertex 
 	vertex = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertex, 1, &vShaderCode, nullptr);
 	glCompileShader(vertex);
@@ -71,7 +71,7 @@ Shader* load_shader(std::string vertexFile, std::string fragmentFile) {
 		return nullptr;
 	}
 
-	// Fragment Shader
+	// Fragment 
 	fragment = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragment, 1, &fShaderCode, nullptr);
 	glCompileShader(fragment);

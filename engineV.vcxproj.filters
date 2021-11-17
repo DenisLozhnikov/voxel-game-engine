@@ -60,6 +60,9 @@
     <ClCompile Include="light\Lightmap.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="light\LightSolver.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="window\Window.h">
@@ -104,5 +107,28 @@
     <ClInclude Include="light\Lightmap.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="light\LightSolver.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="format\ProgressBar.hpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+    <None Include="res\crosshair.glslf" />
+    <None Include="res\crosshair.glslv" />
+    <None Include="res\lines.glslf" />
+    <None Include="res\lines.glslv" />
+    <None Include="res\main.glslf" />
+    <None Include="res\main.glslv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\block.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="res\img.png">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>

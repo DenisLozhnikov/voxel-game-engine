@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="files\file.cpp" />
     <ClCompile Include="graphics\LineBatch.cpp" />
+    <ClCompile Include="light\LightSolver.cpp" />
     <ClCompile Include="light\Lightmap.cpp" />
     <ClCompile Include="voxels\Chunks.cpp" />
     <ClCompile Include="graphics\VoxelRenderer.cpp" />
@@ -157,7 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="files\file.h" />
+    <ClInclude Include="format\ProgressBar.hpp" />
     <ClInclude Include="graphics\LineBatch.h" />
+    <ClInclude Include="light\LightSolver.h" />
     <ClInclude Include="light\Lightmap.h" />
     <ClInclude Include="voxels\Chunks.h" />
     <ClInclude Include="graphics\VoxelRenderer.h" />
@@ -170,6 +173,19 @@
     <ClInclude Include="loaders\image_load.h" />
     <ClInclude Include="window\Events.h" />
     <ClInclude Include="window\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+    <None Include="res\crosshair.glslf" />
+    <None Include="res\crosshair.glslv" />
+    <None Include="res\lines.glslf" />
+    <None Include="res\lines.glslv" />
+    <None Include="res\main.glslf" />
+    <None Include="res\main.glslv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\block.png" />
+    <Image Include="res\img.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

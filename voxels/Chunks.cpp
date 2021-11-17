@@ -1,5 +1,7 @@
 #include "Chunks.h"
 #include <iostream>
+#include "../light/Lightmap.h"
+#include "../format/ProgressBar.hpp"
 
 Chunks::Chunks(int _w, int _h, int _d) : w(_w), h(_h), d(_d)
 {
@@ -7,16 +9,21 @@ Chunks::Chunks(int _w, int _h, int _d) : w(_w), h(_h), d(_d)
     std::cout << std::endl << vol << " chunks proccesing\n";
 	chunks = new Chunk* [vol];
 
+    progresscpp::ProgressBar pBar(vol, 70);
+
 	int index = 0;
 	for (int y = 0; y < h; y++) {
 		for (int z = 0; z < d; z++) {
 			for (int x = 0; x < w; x++, index++) {
-                std::cout << index << "/" << vol << std::endl;
+                //std::cout <<  '\r' << index << "/" << vol;
+                ++pBar;
 				Chunk* chunk = new Chunk(x, y, z);
 				chunks[index] = chunk;
+                pBar.display();
 			}
 		}
 	}
+    pBar.done();
 }
 
 Chunks::~Chunks()
@@ -53,6 +60,38 @@ Chunk* Chunks::getChunk(int x, int y, int z)
 		return nullptr;
 	
 	return chunks[(y * d + z) * w + x];
+}
+
+Chunk* Chunks::getChunkByVoxel(int x, int y, int z)
+{
+    int cx = x / CHUNK_W;
+    int cy = y / CHUNK_H;
+    int cz = z / CHUNK_D;
+    if (x < 0) cx--;
+    if (y < 0) cy--;
+    if (z < 0) cz--;
+    if (cx < 0 || cy < 0 || cz < 0 || cx >= w || cy >= h || cz >= d)
+        return nullptr;
+    return chunks[(cy * d + cz) * w + cx];
+}
+
+unsigned char Chunks::getLight(int x, int y, int z, int channel)
+{
+    int cx = x / CHUNK_W;
+    int cy = y / CHUNK_H;
+    int cz = z / CHUNK_D;
+    if (x < 0) cx--;
+    if (y < 0) cy--;
+    if (z < 0) cz--;
+    if (cx < 0 || cy < 0 || cz < 0 || cx >= w || cy >= h || cz >= d)
+        return 0;
+    Chunk* chunk = chunks[(cy * d + cz) * w + cx];
+
+    int lx = x - cx * CHUNK_W;
+    int ly = y - cy * CHUNK_H;
+    int lz = z - cz * CHUNK_D;
+
+    return chunk->lightmap->get(lx, ly, lz, channel);
 }
 
 void Chunks::set(int x, int y, int z, int id)

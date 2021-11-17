@@ -1,8 +1,7 @@
 #pragma once
 #include "../voxels/Chunk.h"
 
-class Lightmap
-{
+class Lightmap {
 public:
 	unsigned short* map;
 	Lightmap();
@@ -53,4 +52,3 @@ public:
 		map[index] = (map[index] & (0xFFFF & (~(0xF << (channel * 4))))) | (value << (channel << 2));
 	}
 };
-
